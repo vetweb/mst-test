@@ -915,6 +915,9 @@ function updateVideoMask() {
     });
 
     const defs = document.querySelector('defs');
+    if (!defs)
+        return
+
     defs.innerHTML = '';
     defs.appendChild(mask);
 }

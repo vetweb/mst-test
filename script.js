@@ -339,7 +339,12 @@ function initForm(form) {
  * @param {number} scrollOffset - Отступ от верха (px)
  * @param {number} duration - Длительность анимации (ms)
  */
-function initSmoothScroll(menuLinksSelector = '.js-scroll-to', scrollOffset = 0, duration = 800) {
+function initSmoothScroll(
+    menuLinksSelector = '.js-scroll-to',
+    scrollOffset = 0,
+    duration = 800,
+    burgerMenuInstance = null
+) {
     // Проверка параметров
     if (typeof menuLinksSelector !== 'string' || typeof scrollOffset !== 'number' || typeof duration !== 'number') {
         console.error('Invalid parameters for smooth scroll initialization');
@@ -382,7 +387,9 @@ function initSmoothScroll(menuLinksSelector = '.js-scroll-to', scrollOffset = 0,
             }
         }
 
-        // Функция плавности
+        /**
+         * Плавность скролла
+         */
         function easeInOutCubic(t) {
             return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
         }
@@ -401,10 +408,17 @@ function initSmoothScroll(menuLinksSelector = '.js-scroll-to', scrollOffset = 0,
             const targetElement = document.getElementById(targetId);
 
             if (targetElement) {
-                smoothScrollTo(targetElement);
+                // Закрываем бургер-меню, если оно открыто и передан экземпляр
+                if (burgerMenuInstance && burgerMenuInstance.state.isOpen) {
+                    burgerMenuInstance.closeMenu();
+                }
 
-                // Обновляем URL без перезагрузки страницы
-                history.pushState(null, null, href);
+                // небольшая задержка для закрытия меню перед скроллом
+                setTimeout(() => {
+                    smoothScrollTo(targetElement);
+                    // Обновляем URL без перезагрузки страницы
+                    history.pushState(null, null, href);
+                }, 100);
             } else {
                 console.warn(`Target element with id "${targetId}" not found`);
             }
@@ -910,8 +924,11 @@ window.addEventListener('resize', updateVideoMask);
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.js-form form').forEach(form => initForm(form));
     initScrollHeader();
-    initSmoothScroll();
-    new BurgerMenu();
+    const burgerMenu = new BurgerMenu({
+        burgerBtnSelector: '.js-burger-btn',
+        menuSelector: '.menu-box',
+    });
+    initSmoothScroll('.js-scroll-to', 0, 800, burgerMenu);
     modalManager = new ModalManager();
     setupDocumentClickHandler();
     updateVideoMask();

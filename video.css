@@ -1,0 +1,187 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+}
+
+input,
+textarea,
+select {
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+p {
+    margin: 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--c-black2);
+    font-family: "Arial", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--c-black);
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.video-mask-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-with-windows {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.text {
+    background: black;
+    color: white;
+    padding: 0 1vw;
+    font-size: 7vw;
+    line-height: 7vw;
+    font-weight: 700;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.video-window {
+    flex: 0 0 auto;
+    width: 2vw;
+    height: 3.8vw;
+    margin: 0 0 1vw;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+.video-window--one {
+    width: 34vw;
+}
+.video-window--two {
+    width: 17vw;
+}
+.video-window--tree {
+    width: 24vw;
+}
+.video-window--four {
+    width: 58vw;
+}
+.video-window--mob-two,
+.video-window--tree-mob {
+    display: none;
+}
+
+.video-window::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    mask: linear-gradient(white, white);
+    -webkit-mask: linear-gradient(white, white);
+}
+
+.background-video {
+    mask: url(#video-mask);
+    -webkit-mask: url(#video-mask);
+}
+
+
+@media (max-width: 767px) {
+    .video-window {
+        height: 5.3vw;
+        margin: 0 0 3vw;
+    }
+    .video-window--one {
+        width: 47vw;
+    }
+    .video-window--mob-two {
+        display: block;
+        width: 60vw;
+    }
+    .video-window--tree-mob {
+        display: block;
+        width: 34vw;
+    }
+    .video-window--two {
+        display: none;
+    }
+    .video-window--tree {
+        width: 28vw;
+    }
+    .video-window--four {
+        width: 41vw;
+    }
+    .text {
+        font-size: 10vw;
+        line-height: 13vw;
+    }
+}

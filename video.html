@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/video.css">
+</head>
+<body>
+
+<div class="video-mask-container">
+    <!-- Одно видео на весь фон -->
+    <video class="background-video" autoplay muted loop playsinline>
+        <source src="/video1.mp4" type="video/mp4">
+    </video>
+
+    <!-- SVG для маски -->
+    <svg width="0" height="0">
+        <defs></defs>
+    </svg>
+
+    <div class="text-with-windows">
+        <span class="text">We're here</span>
+        <div class="video-window video-window--one"></div>
+        <span class="text">to</span><div class="video-window video-window--mob-two"></div>
+        <span class="text"> make</span>
+        <div class="video-window video-window--tree-mob"></div>
+        <span class="text">healthy </span>
+        <div class="video-window video-window--two"></div>
+        <span class="text">living </span>
+        <span class="text">effortless,</span><span class="text">so you</span>
+        <span class="text">can</span>
+        <div class="video-window video-window--tree"></div>
+        <span class="text">live longer</span>
+        <span class="text">and happier</span>
+        <div class="video-window video-window--four"></div>
+    </div>
+</div>
+
+<script src="/script.js"></script>
+</body>
+
+</html>
